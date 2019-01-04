@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.love.step.mapper.UserMapper">
+    <!--<select id="getUserByOpenId" parameterType="string" resultType="com.love.step.dto.UserDTO">
+        SELECT
+          id,
+          username,
+          openid,
+          is_auth as isAuth
+        FROM
+          pe_user
+        WHERE
+          openid = #{openid}
+    </select>-->
+
+    <select id="getUserList" resultType="com.love.step.dto.UserDTO">
+        SELECT
+          id,
+          username,
+          openid,
+          is_auth as isAuth
+        FROM
+          pe_user
+    </select>
+</mapper>
