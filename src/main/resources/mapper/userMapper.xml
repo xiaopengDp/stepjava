@@ -14,12 +14,33 @@
           openid = #{openid}
     </select>-->
 
+    <update id="updateUserInfo" parameterType="com.love.step.dto.UserDTO">
+        UPDATE pe_user
+        <set>
+            <if test="user.username != null">
+              username = #{user.username},
+            </if>
+            <if test="user.isAuth != null">
+                is_auth = #{user.isAuth},
+            </if>
+            <if test="user.isRun != null">
+                is_run = #{user.isRun},
+            </if>
+            <if test="user.photo != null">
+                photo = #{user.photo},
+            </if>
+        </set>
+        WHERE
+          openid = #{user.openid}
+    </update>
+
     <select id="getUserList" resultType="com.love.step.dto.UserDTO">
         SELECT
           id,
           username,
           openid,
-          is_auth as isAuth
+          is_auth as isAuth,
+          photo
         FROM
           pe_user
     </select>

@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class ResultVO<T> {
 
+
     /** 返回值的CODE **/
     private Integer code;
     /** 返回值的消息 **/

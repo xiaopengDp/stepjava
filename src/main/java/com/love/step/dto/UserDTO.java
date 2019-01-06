@@ -8,12 +8,16 @@ import java.io.Serializable;
 @Data
 public class UserDTO implements Serializable {
 
-    private int id;
+    private Integer id;
 
     private String username;
 
     private String openid;
 
-    private int isAuth;
+    private Integer isAuth;
+
+    private Integer isRun;
+
+    private String photo;
 
 }
