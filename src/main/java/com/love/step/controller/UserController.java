@@ -6,6 +6,7 @@ import com.love.step.service.UserService;
 import com.love.step.utils.RedisUtils;
 import com.love.step.utils.ResultUtil;
 import com.love.step.vo.ResultVO;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,8 +27,13 @@ public class UserController {
 
 
     @GetMapping("/info")
-    public Object getUserInfo(@RequestParam("openid")String openid){
-        return userService.getUserInfoByOpenid(openid);
+    public ResultVO getUserInfo(@RequestParam("token")String token){
+        if(null == token){
+            return ResultUtil.error();
+        }
+        String openid = redisUtils.get(String.format(RedisConstant.TOKEN_PREFIX,token));
+        UserDTO userDTO = userService.getUserInfoByOpenid(openid);
+        return ResultUtil.success(userDTO);
     }
 
     @PostMapping("/update")
@@ -55,6 +61,16 @@ public class UserController {
                          @RequestParam("name")String name,
                          @RequestParam("mobile")String mobile){
         System.out.println("=====>>>>"+token);
+        if(StringUtils.isBlank(name)){
+            return ResultUtil.error(10001,"姓名不可为空");
+        }
+        if(StringUtils.isBlank(mobile)){
+            return ResultUtil.error(10002,"手机号不可为空");
+        }
+        String openid = redisUtils.get(String.format(RedisConstant.TOKEN_PREFIX,token));
+        if(!userService.addAuth(openid,name,mobile)){
+            return ResultUtil.error();
+        }
         return ResultUtil.success();
     }
 

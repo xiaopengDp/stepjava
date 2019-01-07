@@ -26,6 +26,9 @@
             <if test="user.isRun != null">
                 is_run = #{user.isRun},
             </if>
+            <if test="user.isAuthUser != null">
+                is_auth_user = #{user.isAuthUser},
+            </if>
             <if test="user.photo != null">
                 photo = #{user.photo},
             </if>

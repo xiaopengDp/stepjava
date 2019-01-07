@@ -10,4 +10,5 @@ public interface UserService {
     UserDTO getUserInfoByOpenid(String openid);
     Map<String,Object> addUserInfo(UserDTO userDTO);
     boolean updateUserInfo(UserDTO userDTO);
+    boolean addAuth(String openid,String name,String mobile);
 }

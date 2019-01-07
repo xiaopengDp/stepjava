@@ -20,4 +20,6 @@ public class UserDTO implements Serializable {
 
     private String photo;
 
+    private Integer isAuthUser;
+
 }
