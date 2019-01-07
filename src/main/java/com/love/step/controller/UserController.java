@@ -50,4 +50,12 @@ public class UserController {
         return ResultUtil.error();
     }
 
+    @PostMapping("/auth")
+    public ResultVO auth(@RequestParam("token")String token,
+                         @RequestParam("name")String name,
+                         @RequestParam("mobile")String mobile){
+        System.out.println("=====>>>>"+token);
+        return ResultUtil.success();
+    }
+
 }
